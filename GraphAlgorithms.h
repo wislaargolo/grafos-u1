@@ -8,7 +8,7 @@
 #include <stdexcept>
 #include <algorithm>
 #include <queue>
-#include "UndirectedAdjacencyListGraph.h"
+#include "graph/UndirectedAdjacencyListGraph.h"
 
 template<typename Node>
 void populate_graph_from_file(const std::string& filename, IGraph<Node>& graph) {
