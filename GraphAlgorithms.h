@@ -11,31 +11,6 @@
 #include "graph/UndirectedAdjacencyListGraph.h"
 
 template<typename Node>
-void populate_graph_from_file(const std::string& filename, IGraph<Node>& graph) {
-    std::ifstream file(filename);
-    if (!file.is_open()) {
-        throw std::runtime_error("Could not open file: " + filename);
-    }
-
-    std::string line;
-    std::getline(file, line); // Skip the first line 
-
-    while (std::getline(file, line)) {
-        if (line.empty()) continue;
-        
-        std::stringstream ss(line);
-        Node u, v; 
-        char comma;
-        
-        if (ss >> u >> comma >> v) {
-            graph.add_edge(u, v);
-        }
-    }
-    file.close();
-}
-
-
-template<typename Node>
 std::vector<Node> bfs(const IGraph<Node>& graph, Node start) {
     std::vector<Node> visited;
     std::queue<Node> queue;
