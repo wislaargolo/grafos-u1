@@ -40,4 +40,12 @@ void add_node_from_string(const std::string& str, IGraph<Node>& graph) {
     graph.add_node(node);
 } 
 
+template<typename Node>
+void remove_node_from_string(const std::string& str, IGraph<Node>& graph) {
+    Node node;
+    std::stringstream ss(str);
+    ss >> node;
+    graph.remove_node(node);
+} 
+
 #endif // GRAPH_IO_H
