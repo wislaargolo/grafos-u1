@@ -11,19 +11,36 @@ int main() {
     graph.print();
 
     auto dfs_result = dfs(graph);
-    std::cout << "Result: ";
-    for (const auto& node : dfs_pre_order(dfs_result)) {
-        std::cout << node << " ";
+    std::cout << "Result:\n";
+    for (const auto& [node, time] : dfs_result.discovery) {
+        std::cout << "Node: " << node << ", Discovery Time: " << time 
+                  << ", Exit Time: " << dfs_result.exit.at(node) << "\n";
     }
-    std::cout << "\nEdges by type:\n";
+    std::cout << "Edges:\n";
     for (const auto& [type, edges] : dfs_result.edges) {
-        std::cout << type << " edges:\n";
-        for (const auto& [from, to] : edges) {
-            std::cout << from << " - " << to << "\n";
+        std::cout << "  " << type << " Edges:\n";
+        for (const auto& edge : edges) {
+            std::cout << "    " << edge.from << " -> " << edge.to << "\n";
         }
     }
-    std::cout << "DFS tree edges:\n";
-    for( const auto& [from, to] : dfs_result.parent) {
-        std::cout << to << " - " << from << "\n";
+
+    std::cout << "Creating graph from file 'DIGRAFO1.txt'...\n";
+    DirectedAdjacencyListGraph<int> graph1;    
+    populate_graph_from_file("data/DIGRAFO1.txt", graph1);
+    graph1.print();
+
+    auto dfs_result1 = dfs(graph1);
+    std::cout << "Result:\n";
+    for (const auto& [node, time] : dfs_result1.discovery) {
+        std::cout << "Node: " << node << ", Discovery Time: " << time 
+                  << ", Exit Time: " << dfs_result1.exit.at(node) << "\n";
     }
+    std::cout << "Edges:\n";
+    for (const auto& [type, edges] : dfs_result1.edges) {
+        std::cout << "  " << type << " Edges:\n";
+        for (const auto& edge : edges) {
+            std::cout << "    " << edge.from << " -> " << edge.to << "\n";
+        }
+    }
+    return 0;
 }

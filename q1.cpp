@@ -26,5 +26,11 @@ int main() {
     UndirectedAdjacencyListGraph<char> graph3;
     populate_graph_from_file("data/GRAFO_3.txt", graph3);
     graph3.print();
+
+    std::cout << "Creating graph from file 'DIGRAFO_0.txt'...\n";
+    DirectedAdjacencyListGraph<char> digraph0;
+    populate_graph_from_file("data/DIGRAFO_0.txt", digraph0);
+    digraph0.print();
+    
     return 0;
 }

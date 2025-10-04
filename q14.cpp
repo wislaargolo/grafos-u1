@@ -11,18 +11,17 @@ int main() {
     graph.print();
 
     auto dfs_result = dfs_unidirectional(graph, graph.get_nodes().front());
-    std::cout << "DFS starting from : " << graph.get_nodes().front() << "\n";
-    std::cout << "Result: ";
-    for (const auto& node : dfs_order(dfs_result)) {
-        std::cout << node << " ";
+    std::cout << "Result:\n";
+    for (const auto& [node, time] : dfs_result.discovery) {
+        std::cout << "Node: " << node << ", Discovery Time: " << time 
+                  << ", Exit Time: " << dfs_result.exit.at(node) << "\n";
     }
-    std::cout << "\nBack edges:\n";
-    for (const auto& [from, to] : dfs_result.edges[EdgeType::BACK]) {
-        std::cout << from << " - " << to << "\n";
+    std::cout << "Edges:\n";
+    for (const auto& [type, edges] : dfs_result.edges) {
+        std::cout << "  " << type << " Edges:\n";
+        for (const auto& edge : edges) {
+            std::cout << "    " << edge.from << " -> " << edge.to << "\n";
+        }
     }
-
-    std::cout << "DFS tree edges:\n";
-    for( const auto& [from, to] : dfs_result.parent) {
-        std::cout << to << " - " << from << "\n";
-    }
+    return 0;
 }
