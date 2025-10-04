@@ -6,6 +6,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <algorithm>
+#include "Dfs.h"
 #include "graph/UndirectedAdjacencyListGraph.h"
 
 template<typename Node>
@@ -47,5 +48,26 @@ void remove_node_from_string(const std::string& str, IGraph<Node>& graph) {
     ss >> node;
     graph.remove_node(node);
 } 
+
+std::ostream& operator<<(std::ostream& os, EdgeType type) {
+    switch (type) {
+        case EdgeType::TREE:    
+            os << "Tree";    
+            break;
+        case EdgeType::BACK:    
+            os << "Back";    
+            break;
+        case EdgeType::FORWARD: 
+            os << "Forward"; 
+            break;
+        case EdgeType::CROSS:   
+            os << "Cross";   
+            break;
+        default:                
+            os << "Unknown"; 
+            break;
+    }
+    return os;
+}
 
 #endif // GRAPH_IO_H

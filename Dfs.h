@@ -124,18 +124,21 @@ DFSResult<Node> dfs_unidirectional(const IGraph<Node>& graph, const Node& start)
 }
 
 template<typename Node>
-std::vector<Node> dfs_order(const DFSResult<Node>& dfs_result) {
-   std::vector<std::pair<int, Node>> aux;
-    aux.reserve(dfs_result.discovery.size());
-    for (const auto& [u, t] : dfs_result.discovery) aux.emplace_back(t, u);
+std::vector<Node> dfs_pre_order(const DFSResult<Node>& dfs_result) {
+    
+    std::vector<Node> pre_order;
+    pre_order.reserve(dfs_result.discovery.size());
+    for (const auto& [node, time] : dfs_result.discovery) {
+        pre_order.push_back(node);
+    }
 
-    std::sort(aux.begin(), aux.end(),
-              [](const auto& a, const auto& b){ return a.first < b.first; });
+    std::sort(pre_order.begin(), pre_order.end(),
+              [&](const Node& a, const Node& b) {
+                  return dfs_result.discovery.at(a) < dfs_result.discovery.at(b);
+              });
 
-    std::vector<Node> pre;
-    pre.reserve(aux.size());
-    for (auto& [t, u] : aux) pre.push_back(u);
-    return pre;
+    return pre_order;
+
 }
 
 #endif // DFS_H

@@ -12,19 +12,12 @@ int main() {
 
     auto dfs_result = dfs(graph);
     std::cout << "Result: ";
-    for (const auto& node : dfs_order(dfs_result)) {
+    for (const auto& node : dfs_pre_order(dfs_result)) {
         std::cout << node << " ";
     }
     std::cout << "\nEdges by type:\n";
     for (const auto& [type, edges] : dfs_result.edges) {
-        std::string type_str;
-        switch (type) {
-            case EdgeType::TREE: type_str = "Tree"; break;
-            case EdgeType::BACK: type_str = "Back"; break;
-            case EdgeType::FORWARD: type_str = "Forward"; break;
-            case EdgeType::CROSS: type_str = "Cross"; break;
-        }
-        std::cout << type_str << " edges:\n";
+        std::cout << type << " edges:\n";
         for (const auto& [from, to] : edges) {
             std::cout << from << " - " << to << "\n";
         }
