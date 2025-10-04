@@ -32,4 +32,12 @@ void populate_graph_from_file(const std::string& filename, IGraph<Node>& graph) 
     file.close();
 }
 
+template<typename Node>
+void add_node_from_string(const std::string& str, IGraph<Node>& graph) {
+    Node node;
+    std::stringstream ss(str);
+    ss >> node;
+    graph.add_node(node);
+} 
+
 #endif // GRAPH_IO_H
