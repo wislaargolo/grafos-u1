@@ -1,5 +1,5 @@
-#ifndef ADJACENCYMATRIXGRAPH_H
-#define ADJACENCYMATRIXGRAPH_H
+#ifndef DIRECTEDADJACENCYMATRIXGRAPH_H
+#define DIRECTEDADJACENCYMATRIXGRAPH_H
 
 #include <iostream>
 #include <vector>
@@ -10,19 +10,16 @@
 #include "IGraph.h"
 
 template<typename Node>
-class AdjacencyMatrixGraph : public IGraph<Node> {
+class DirectedAdjacencyMatrixGraph : public IGraph<Node> {
 private:
     std::vector<std::vector<int>> matrix;
     std::vector<Node> index_to_node;
     std::unordered_map<Node, size_t> node_to_index;
-    bool is_directed;
 
 public:
-    explicit AdjacencyMatrixGraph(bool directed = false)
-        : is_directed(directed) {}
+    explicit DirectedAdjacencyMatrixGraph() = default;
 
-    AdjacencyMatrixGraph(const std::vector<Node>& initial_nodes, bool directed = false)
-        : is_directed(directed) {
+    explicit DirectedAdjacencyMatrixGraph(const std::vector<Node>& initial_nodes) {
         for (const auto& node : initial_nodes) {
             add_node(node);
         }
@@ -41,7 +38,7 @@ public:
                 }
             }
         }
-        return is_directed ? edge_count : edge_count / 2;
+        return edge_count;
     }
 
     bool has_node(const Node& node) const override {
@@ -74,9 +71,6 @@ public:
 
         if (index_to_remove != last_index) {
             std::swap(matrix[index_to_remove], matrix[last_index]);
-        }
-
-        if (index_to_remove != last_index) {
             for (size_t i = 0; i < get_order(); ++i) {
                 std::swap(matrix[i][index_to_remove], matrix[i][last_index]);
             }
@@ -88,7 +82,6 @@ public:
         }
 
         Node last_node = index_to_node.back();
-
         node_to_index.erase(node);
         index_to_node.erase(index_to_node.begin() + index_to_remove);
 
@@ -106,9 +99,6 @@ public:
         size_t to_idx = node_to_index.at(to);
 
         matrix[from_idx][to_idx] = 1;
-        if (!is_directed) {
-            matrix[to_idx][from_idx] = 1;
-        }
     }
 
     void remove_edge(const Node& from, const Node& to) override {
@@ -116,9 +106,6 @@ public:
             size_t from_idx = node_to_index.at(from);
             size_t to_idx = node_to_index.at(to);
             matrix[from_idx][to_idx] = 0;
-            if (!is_directed) {
-                matrix[to_idx][from_idx] = 0;
-            }
         }
     }
 
@@ -141,10 +128,8 @@ public:
         return index_to_node;
     }
 
-void print() const override {
-        std::cout  << "Graph ("
-                   << (is_directed ? "directed" : "undirected")
-                   << ", order: " << get_order()
+    void print() const override {
+        std::cout  << "Graph (directed, order: " << get_order()
                    << ", size: " << get_size() << "):\n";
 
         if (get_order() == 0) {
@@ -174,7 +159,6 @@ void print() const override {
             }
             std::cout << "\n";
         }
-
         std::cout << std::endl;
     }
 };
