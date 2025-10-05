@@ -167,7 +167,7 @@ public:
         if (it != node_to_index.end()) {
             return it->second;
         }
-        return -1; 
+        return -1;
     }
 
     Node get_node(int index) const override {
@@ -178,7 +178,17 @@ public:
     }
 
     std::vector<int> get_neighbors_indices(int index) const override {
-        /*todo*/
+        if (index < 0 || static_cast<size_t>(index) >= get_order()) {
+            throw std::out_of_range("get_neighbors_indices: Index out of range");
+        }
+
+        std::vector<int> neighbors_indices;
+        for (size_t j = 0; j < get_order(); ++j) {
+            if (matrix[index][j] == 1) {
+                neighbors_indices.push_back(j);
+            }
+        }
+        return neighbors_indices;
     }
 };
 
