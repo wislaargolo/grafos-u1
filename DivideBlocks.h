@@ -75,20 +75,23 @@ std::list<int> divide_blocks_visit(const IGraph<Node>& graph, DivideBlocksState&
 
 template<typename Node>
 DivideBlocksResult<Node> divide_blocks(const IGraph<Node>& graph) {
-    if (graph.get_nodes().size() == 0) {
+    size_t size = graph.get_nodes().size();
+
+    if (size == 0) {
         throw std::invalid_argument("Graph is empty");
     }
 
     DivideBlocksState state;
 
-    size_t size = graph.get_size();
-
     state.discovery.resize(size, 0);
-    state.depth.resize(size);
+    state.depth.resize(size, 0);
     state.lowpt.resize(size);
-    state.depth[0] = 0;
 
-    divide_blocks_visit(graph, state, 0);
+    for (int i = 0; i < size; i++) {
+        if (!state.discovery[i]) {
+            divide_blocks_visit(graph, state, i);
+        }
+    }
 
     DivideBlocksResult<Node> result;
 
