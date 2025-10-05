@@ -23,6 +23,12 @@ public:
 
     virtual void print() const = 0;
 
+    virtual int get_index(const Node& node) const = 0;
+
+    virtual Node get_node(int index) const = 0;
+
+    virtual std::vector<int> get_neighbors_indices(int index) const = 0;
+
 };
 
 #endif // IGRAPH_H

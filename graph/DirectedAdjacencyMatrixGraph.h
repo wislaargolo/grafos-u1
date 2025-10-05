@@ -161,6 +161,25 @@ public:
         }
         std::cout << std::endl;
     }
+
+    int get_index(const Node& node) const override {
+        auto it = node_to_index.find(node);
+        if (it != node_to_index.end()) {
+            return it->second;
+        }
+        return -1; 
+    }
+
+    Node get_node(int index) const override {
+        if (index >= 0 && static_cast<size_t>(index) < index_to_node.size()) {
+            return index_to_node[index];
+        }
+        throw std::out_of_range("get_node: Index out of range");
+    }
+
+    std::vector<int> get_neighbors_indices(int index) const override {
+        /*todo*/
+    }
 };
 
 #endif
