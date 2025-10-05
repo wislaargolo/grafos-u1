@@ -10,9 +10,9 @@
 template<typename Node>
 class DirectedAdjacencyListGraph : public IGraph<Node> {
     private:
-         std::vector<std::vector<int>> adjac;       
+        std::vector<std::vector<int>> adjac;       
         std::vector<Node> index_to_node;           
-        std::unordered_map<Node, size_t> node_to_index; 
+        std::unordered_map<Node, int> node_to_index; 
     public:
 
         size_t get_order() const override {
@@ -39,8 +39,8 @@ class DirectedAdjacencyListGraph : public IGraph<Node> {
         void remove_node(const Node& node) override {
             auto it = node_to_index.find(node);
             if (it != node_to_index.end()) {
-                size_t index = it->second;
-                size_t last_index = index_to_node.size() - 1;
+                int index = it->second;
+                int last_index = static_cast<int>(index_to_node.size()) - 1;
 
                 for (auto& neighbors : adjac) {
                     neighbors.erase(std::remove(neighbors.begin(), neighbors.end(), index), neighbors.end());
@@ -109,7 +109,7 @@ class DirectedAdjacencyListGraph : public IGraph<Node> {
         }
 
         std::vector<int> get_neighbors_indices(int index) const override {
-            if (index < 0 || static_cast<size_t>(index) >= index_to_node.size()) {
+            if (index < 0 || index >= static_cast<int>(adjac.size())) {
                 throw std::out_of_range("get_neighbors_indices: Index out of range");
             }
             return adjac[index];

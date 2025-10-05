@@ -1,0 +1,3 @@
+/mnt/c/Users/wisla/Documents/grafos/graph/build/CMakeFiles/graph_tests.dir
+/mnt/c/Users/wisla/Documents/grafos/graph/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/wisla/Documents/grafos/graph/build/CMakeFiles/rebuild_cache.dir

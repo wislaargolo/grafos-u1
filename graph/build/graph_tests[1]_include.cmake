@@ -1,0 +1,5 @@
+if(EXISTS "/mnt/c/Users/wisla/Documents/grafos/graph/build/graph_tests[1]_tests.cmake")
+  include("/mnt/c/Users/wisla/Documents/grafos/graph/build/graph_tests[1]_tests.cmake")
+else()
+  add_test(graph_tests_NOT_BUILT graph_tests_NOT_BUILT)
+endif()

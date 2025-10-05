@@ -14,7 +14,7 @@ class DirectedAdjacencyMatrixGraph : public IGraph<Node> {
 private:
     std::vector<std::vector<int>> matrix;
     std::vector<Node> index_to_node;
-    std::unordered_map<Node, size_t> node_to_index;
+    std::unordered_map<Node, int> node_to_index;
 
 public:
     explicit DirectedAdjacencyMatrixGraph() = default;
@@ -171,7 +171,7 @@ public:
     }
 
     Node get_node(int index) const override {
-        if (index >= 0 && static_cast<size_t>(index) < index_to_node.size()) {
+        if (index >= 0 && index < static_cast<int>(index_to_node.size())) {
             return index_to_node[index];
         }
         throw std::out_of_range("get_node: Index out of range");
@@ -179,6 +179,7 @@ public:
 
     std::vector<int> get_neighbors_indices(int index) const override {
         /*todo*/
+        return {};
     }
 };
 

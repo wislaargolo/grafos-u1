@@ -9,8 +9,7 @@
 template<typename Node>
 std::vector<Node> bfs_visit(const IGraph<Node>& graph, int start_index, std::vector<int>& visited) {
 
-    size_t order = graph.get_order();
-    std::queue<size_t> queue;
+    std::queue<int> queue;
     std::vector<Node> result;
 
     visited[start_index] = 1;
@@ -52,7 +51,7 @@ std::vector<std::vector<Node>> bfs_digraph(const IGraph<Node>& graph) {
 
     std::vector<std::vector<Node>> result;
     std::vector<int> visited(graph.get_order(), 0);
-    for (int i = 0; i < graph.get_order(); i++) {
+    for (size_t i = 0; i < graph.get_order(); i++) {
         if (visited[i] == 0) {
             auto component = bfs_visit(graph, i, visited);
             result.push_back(component);
