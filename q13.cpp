@@ -1,4 +1,4 @@
-#include "GraphAlgorithms.h"
+#include "Bfs.h"
 #include "GraphIO.h"
 
 #include <iostream>
