@@ -85,6 +85,22 @@ public:
         }
         std::cout << std::endl;
     }
+
+    size_t get_in_degree(const Node& node) const override {
+        if(!this->has_node(node)) return 0;
+        size_t node_index = this->get_index(node);
+        size_t degree = 0;
+        for (const auto& edge_row : this->matrix) {
+            if (edge_row[node_index] == 1) {
+                degree++;
+            }
+        }
+        return degree;
+    }
+
+    size_t get_out_degree(const Node& node) const override {
+        return get_in_degree(node);
+    }
 };
 
 #endif

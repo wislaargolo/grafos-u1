@@ -190,6 +190,34 @@ public:
         }
         return neighbors_indices;
     }
+
+    size_t get_in_degree(const Node& node) const override {
+        if (!has_node(node)) {
+            return 0;
+        }
+        size_t node_idx = node_to_index.at(node);
+        size_t in_degree = 0;
+        for (size_t i = 0; i < get_order(); ++i) {
+            if (matrix[i][node_idx] == 1) {
+                in_degree++;
+            }
+        }
+        return in_degree;
+    }
+
+    size_t get_out_degree(const Node& node) const override {
+        if (!has_node(node)) {
+            return 0;
+        }
+        size_t node_idx = node_to_index.at(node);
+        size_t out_degree = 0;
+        for (size_t j = 0; j < get_order(); ++j) {
+            if (matrix[node_idx][j] == 1) {
+                out_degree++;
+            }
+        }
+        return out_degree;
+    }
 };
 
 #endif

@@ -172,6 +172,34 @@ public:
         }
         std::cout << std::endl;
     }
+
+    size_t get_in_degree(const Node& node) const override {
+        if (!has_node(node)) {
+            return 0;
+        }
+        size_t node_idx = node_to_index.at(node);
+        size_t in_degree = 0;
+        for (const auto& edge_row : matrix) {
+            if (edge_row[node_idx] == 1) {
+                in_degree++;
+            }
+        }
+        return in_degree;
+    }
+
+    size_t get_out_degree(const Node& node) const override {
+        if (!has_node(node)) {
+            return 0;
+        }
+        size_t node_idx = node_to_index.at(node);
+        size_t out_degree = 0;
+        for (const auto& edge_row : matrix) {
+            if (edge_row[node_idx] == -1) {
+                out_degree++;
+            }
+        }
+        return out_degree;
+    }
 };
 
 #endif

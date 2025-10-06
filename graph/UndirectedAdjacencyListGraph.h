@@ -1,13 +1,13 @@
 #ifndef UNDIRECTEDADJACENCYLISTGRAPH_H
 #define UNDIRECTEDADJACENCYLISTGRAPH_H
-#include <algorithm> 
+#include <algorithm>
 
 //talvez mudar pra composição ao invés de herança
-#include "DirectedAdjacencyListGraph.h" 
+#include "DirectedAdjacencyListGraph.h"
 
 template<typename Node>
 class UndirectedAdjacencyListGraph : public DirectedAdjacencyListGraph<Node> {
-    
+
     public:
         void add_edge(const Node& u, const Node& v) override {
             DirectedAdjacencyListGraph<Node>::add_edge(u, v);
@@ -34,6 +34,10 @@ class UndirectedAdjacencyListGraph : public DirectedAdjacencyListGraph<Node> {
 
            size_t regular_edges = (directed_size - loop_count) / 2;
            return regular_edges + loop_count;
+        }
+
+        size_t get_in_degree(const Node& node) const override {
+            return this->get_out_degree(node);
         }
 };
 #endif // UNDIRECTEDADJACENCYLISTGRAPH_H
