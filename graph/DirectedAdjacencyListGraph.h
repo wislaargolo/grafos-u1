@@ -149,6 +149,11 @@ class DirectedAdjacencyListGraph : public IGraph<Node> {
             }
             throw std::out_of_range("get_node: Index out of range");
         }
+    
+        bool is_adjacent(const Node& u, const Node& v) const override {
+            const auto& neighbors = adjac[get_index(u)];
+            return std::find(neighbors.begin(), neighbors.end(), get_index(v)) != neighbors.end();
+        }
 };
 
 #endif // DIRECTEDADJACENCYLISTGRAPH_H

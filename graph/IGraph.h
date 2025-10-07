@@ -29,6 +29,10 @@ public:
 
     virtual std::vector<int> get_neighbors_indices(int index) const = 0;
 
+    //para digrafo: um vertice v é adjacente a um vertice u 
+            //se houver um arco (u,v) que aponta de u para v.
+    virtual bool is_adjacent(const Node& u, const Node& v) const = 0;
+
 };
 
 #endif // IGRAPH_H
