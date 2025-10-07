@@ -8,6 +8,7 @@
 #include <algorithm>
 #include "Dfs.h"
 #include "graph/UndirectedAdjacencyListGraph.h"
+#include "graph/UndirectedAdjacencyMatrixGraph.h"
 
 template<typename Node>
 void populate_graph_from_file(const std::string& filename, IGraph<Node>& graph) {
