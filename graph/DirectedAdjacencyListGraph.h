@@ -10,7 +10,7 @@
 template<typename Node>
 class DirectedAdjacencyListGraph : public IGraph<Node> {
     private:
-         std::vector<std::vector<int>> adjac;       
+        std::vector<std::vector<int>> adjac;       
         std::vector<Node> index_to_node;           
         std::unordered_map<Node, size_t> node_to_index; 
     public:
@@ -55,7 +55,7 @@ class DirectedAdjacencyListGraph : public IGraph<Node> {
 
                 for(auto& neighbors : adjac) {
                     for(auto& neighbor_index : neighbors) {
-                        if(neighbor_index == last_index) {
+                        if(neighbor_index == static_cast<int>(last_index)) {
                             neighbor_index = index;
                         }
                     }

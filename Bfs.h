@@ -1,3 +1,6 @@
+#ifndef BFS_H
+#define BFS_H
+
 #include <vector>
 #include <fstream>
 #include <sstream>
@@ -7,18 +10,9 @@
 #include "graph/UndirectedAdjacencyListGraph.h"
 
 template<typename Node>
-std::vector<Node> bfs(const IGraph<Node>& graph, Node start) {
+std::vector<Node> bfs_visit(const IGraph<Node>& graph, int start_index, std::vector<int>& visited) {
 
-    if (!graph.has_node(start)) {
-        std::cerr << "Start node '" << start << "' does not exist in the graph.\n";
-        return {};
-    }
-
-    int start_index = graph.get_index(start);
-    size_t order = graph.get_order();
-
-    std::vector<size_t> visited(order, 0);
-    std::queue<size_t> queue;
+    std::queue<int> queue;
     std::vector<Node> result;
 
     visited[start_index] = 1;
@@ -38,5 +32,35 @@ std::vector<Node> bfs(const IGraph<Node>& graph, Node start) {
         }
      }
      return result;
-    
 }
+
+template<typename Node>
+std::vector<Node> bfs(const IGraph<Node>& graph, Node start) {
+
+    if (!graph.has_node(start)) {
+        std::cerr << "Start node '" << start << "' does not exist in the graph.\n";
+        return {};
+    }
+
+    int start_index = graph.get_index(start);
+    std::vector<int> visited(graph.get_order(), 0);
+    return bfs_visit(graph, start_index, visited);
+
+}
+
+
+template<typename Node>
+std::vector<std::vector<Node>> bfs_digraph(const IGraph<Node>& graph) {
+
+    std::vector<std::vector<Node>> result;
+    std::vector<int> visited(graph.get_order(), 0);
+    for (size_t i = 0; i < graph.get_order(); i++) {
+        if (visited[i] == 0) {
+            auto component = bfs_visit(graph, i, visited);
+            result.push_back(component);
+        }
+    }
+    return result;
+}
+
+#endif // BFS_H
