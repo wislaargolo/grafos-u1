@@ -92,7 +92,7 @@ DFSResult<Node> dfs(const IGraph<Node>& graph) {
     };
 
 
-    for(int i = 0; i < graph.get_order(); i++) {
+    for(size_t i = 0; i < graph.get_order(); i++) {
         if (state.discovery[i] == 0) {
             dfs_visit(graph, i, time, state.discovery, state.exit, state.parent,
                       find_tree, find_back, find_forward, find_cross);
