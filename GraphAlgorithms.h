@@ -9,6 +9,7 @@
 #include <algorithm>
 #include <queue>
 #include "graph/UndirectedAdjacencyListGraph.h"
+#include "graph/UndirectedAdjacencyMatrixGraph.h"
 #include "Bfs.h"
 
 /**
