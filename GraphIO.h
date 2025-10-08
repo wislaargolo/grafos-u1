@@ -9,6 +9,19 @@
 #include "Dfs.h"
 #include "graph/UndirectedAdjacencyListGraph.h"
 
+/**
+ * @brief Popula um grafo com dados de um arquivo de texto.
+ * 
+ * @details O formato esperado do arquivo é:
+ * 1. Uma primeira linha de cabeçalho, que é ignorada.
+ * 2. Linhas subsequentes no formato "u,v", onde 'u' e 'v' são os nós
+ * que formam uma aresta.
+ *
+ * @tparam Node O tipo de dado dos nós do grafo.
+ * @param filename O caminho para o arquivo de entrada.
+ * @param graph O objeto grafo a ser populado.
+ * @throws std::runtime_error se o arquivo não puder ser aberto.
+ */
 template<typename Node>
 void populate_graph_from_file(const std::string& filename, IGraph<Node>& graph) {
     std::ifstream file(filename);
@@ -17,7 +30,8 @@ void populate_graph_from_file(const std::string& filename, IGraph<Node>& graph) 
     }
 
     std::string line;
-    std::getline(file, line); // Skip the first line 
+    /*Ignora a primeira linha de cabeçalho*/
+    std::getline(file, line); 
 
     while (std::getline(file, line)) {
         if (line.empty()) continue;
@@ -26,6 +40,7 @@ void populate_graph_from_file(const std::string& filename, IGraph<Node>& graph) 
         Node u, v; 
         char comma;
         
+        /*Lê os nós u e v separados por vírgula*/
         if (ss >> u >> comma >> v) {
             graph.add_edge(u, v);
         }
