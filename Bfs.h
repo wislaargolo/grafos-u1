@@ -8,23 +8,8 @@
 #include <algorithm>
 #include <queue>
 #include "graph/UndirectedAdjacencyListGraph.h"
-
-/**
- * @file bfs.h
- * @brief Implementação do algoritmo de Busca em Largura (BFS - Breadth-First Search).
- *
- * Este arquivo contém três funções que implementam a travessia BFS:
- * 1. bfs_visit: O núcleo do algoritmo que visita um componente conectado.
- * 2. bfs: Uma interface amigável para iniciar a busca a partir de um nó específico.
- * 3. bfs_digraph: Realiza a busca em todo o grafo, encontrando todos os componentes
- * (ou "árvores" da floresta BFS), ideal para grafos desconexos ou dígrafos.
- */
-
-// A linha #ifndef BFS_H provavelmente estaria no início do arquivo.
-
-#include <queue>   // Para usar a estrutura de dados std::queue (fila), essencial para o BFS.
-#include <vector>  // Para usar std::vector para armazenar resultados e o estado dos nós visitados.
-#include <iostream> // Para imprimir mensagens de erro (std::cerr).
+#include "graph/IGraph.h"
+#include <iostream> 
 
 /**
  * @brief Realiza a travessia BFS a partir de um índice inicial, obtendo então um componente conectado.
