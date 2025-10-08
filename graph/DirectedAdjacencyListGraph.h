@@ -4,15 +4,15 @@
 #include <iostream>
 #include <vector>
 #include <unordered_map>
-#include <algorithm> 
+#include <algorithm>
 
 #include "IGraph.h"
 template<typename Node>
 class DirectedAdjacencyListGraph : public IGraph<Node> {
     private:
-        std::vector<std::vector<int>> adjac;       
-        std::vector<Node> index_to_node;           
-        std::unordered_map<Node, size_t> node_to_index; 
+         std::vector<std::vector<int>> adjac;
+        std::vector<Node> index_to_node;
+        std::unordered_map<Node, size_t> node_to_index;
     public:
 
         size_t get_order() const override {
@@ -55,7 +55,7 @@ class DirectedAdjacencyListGraph : public IGraph<Node> {
 
                 for(auto& neighbors : adjac) {
                     for(auto& neighbor_index : neighbors) {
-                        if(neighbor_index == static_cast<int>(last_index)) {
+                        if(neighbor_index == last_index) {
                             neighbor_index = index;
                         }
                     }
@@ -64,7 +64,7 @@ class DirectedAdjacencyListGraph : public IGraph<Node> {
                 index_to_node.pop_back();
                 adjac.pop_back();
                 node_to_index.erase(it);
-        
+
             }
         }
 
@@ -90,7 +90,7 @@ class DirectedAdjacencyListGraph : public IGraph<Node> {
                 auto& neighbors_from = adjac[from_index];
                 neighbors_from.erase(std::remove(neighbors_from.begin(), neighbors_from.end(), to_index), neighbors_from.end());
             }
-             
+
         }
 
         std::vector<Node> get_neighbors(const Node& node) const override {
@@ -140,7 +140,7 @@ class DirectedAdjacencyListGraph : public IGraph<Node> {
             if (it != node_to_index.end()) {
                 return it->second;
             }
-            return -1; 
+            return -1;
         }
 
         Node get_node(int index) const override {
@@ -148,6 +148,31 @@ class DirectedAdjacencyListGraph : public IGraph<Node> {
                 return index_to_node[index];
             }
             throw std::out_of_range("get_node: Index out of range");
+        }
+
+        size_t get_in_degree(const Node& node) const override {
+            if (!has_node(node)) {
+                return 0;
+            }
+
+            size_t node_index = node_to_index.at(node);
+            size_t in_degree = 0;
+            for (const auto& neighbors : adjac) {
+                for (int neighbor_index : neighbors) {
+                    if (neighbor_index == node_index) {
+                        in_degree++;
+                    }
+                }
+            }
+            return in_degree;
+        }
+
+        size_t get_out_degree(const Node& node) const override {
+            if (!has_node(node)) {
+                return 0;
+            }
+            size_t node_index = node_to_index.at(node);
+            return adjac[node_index].size();
         }
 };
 

@@ -29,6 +29,9 @@ public:
 
     virtual std::vector<int> get_neighbors_indices(int index) const = 0;
 
+    virtual size_t get_in_degree(const Node& node) const = 0;
+    virtual size_t get_out_degree(const Node& node) const = 0;
+
 };
 
 #endif // IGRAPH_H

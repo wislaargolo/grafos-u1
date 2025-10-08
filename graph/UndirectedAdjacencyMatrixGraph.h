@@ -64,6 +64,10 @@ public:
         }
         std::cout << std::endl;
     }
+
+    size_t get_in_degree(const Node& node) const override {
+        return this->get_out_degree(node);
+    }
 };
 
 #endif
