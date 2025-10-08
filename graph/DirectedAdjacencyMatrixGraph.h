@@ -167,7 +167,7 @@ public:
         if (it != node_to_index.end()) {
             return it->second;
         }
-        return -1; 
+        return -1;
     }
 
     Node get_node(int index) const override {
@@ -178,7 +178,45 @@ public:
     }
 
     std::vector<int> get_neighbors_indices(int index) const override {
-        /*todo*/
+        if (index < 0 || static_cast<size_t>(index) >= get_order()) {
+            throw std::out_of_range("get_neighbors_indices: Index out of range");
+        }
+
+        std::vector<int> neighbors_indices;
+        for (size_t j = 0; j < get_order(); ++j) {
+            if (matrix[index][j] == 1) {
+                neighbors_indices.push_back(j);
+            }
+        }
+        return neighbors_indices;
+    }
+
+    size_t get_in_degree(const Node& node) const override {
+        if (!has_node(node)) {
+            return 0;
+        }
+        size_t node_idx = node_to_index.at(node);
+        size_t in_degree = 0;
+        for (size_t i = 0; i < get_order(); ++i) {
+            if (matrix[i][node_idx] == 1) {
+                in_degree++;
+            }
+        }
+        return in_degree;
+    }
+
+    size_t get_out_degree(const Node& node) const override {
+        if (!has_node(node)) {
+            return 0;
+        }
+        size_t node_idx = node_to_index.at(node);
+        size_t out_degree = 0;
+        for (size_t j = 0; j < get_order(); ++j) {
+            if (matrix[node_idx][j] == 1) {
+                out_degree++;
+            }
+        }
+        return out_degree;
     }
 
     bool is_adjacent(const Node& u, const Node& v) const override {

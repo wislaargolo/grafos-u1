@@ -10,6 +10,18 @@
 #include "graph/UndirectedAdjacencyListGraph.h"
 #include "graph/UndirectedAdjacencyMatrixGraph.h"
 
+/**
+ * @brief Popula um grafo com dados de um arquivo de texto.
+ * 
+ * @details O formato esperado do arquivo é: uma linha de cabeçalho inicial e 
+ * linhas seguintes no formato "u,v", onde 'u' e 'v' são os nós
+ * que formam uma aresta.
+ *
+ * @tparam Node O tipo de dado dos nós do grafo.
+ * @param filename O caminho para o arquivo de entrada.
+ * @param graph O objeto grafo a ser populado.
+ * @throws std::runtime_error se o arquivo não puder ser aberto.
+ */
 template<typename Node>
 void populate_graph_from_file(const std::string& filename, IGraph<Node>& graph) {
     std::ifstream file(filename);
@@ -18,7 +30,8 @@ void populate_graph_from_file(const std::string& filename, IGraph<Node>& graph) 
     }
 
     std::string line;
-    std::getline(file, line); // Skip the first line 
+    /*Ignora a primeira linha de cabeçalho*/
+    std::getline(file, line); 
 
     while (std::getline(file, line)) {
         if (line.empty()) continue;
@@ -27,6 +40,7 @@ void populate_graph_from_file(const std::string& filename, IGraph<Node>& graph) 
         Node u, v; 
         char comma;
         
+        /*Lê os nós u e v separados por vírgula*/
         if (ss >> u >> comma >> v) {
             graph.add_edge(u, v);
         }
@@ -34,6 +48,13 @@ void populate_graph_from_file(const std::string& filename, IGraph<Node>& graph) 
     file.close();
 }
 
+/**
+ * @brief Adiciona um nó ao grafo a partir de uma representação em string.
+ *
+ * @tparam Node O tipo de dado dos nós do grafo.
+ * @param str A string contendo o valor do nó a ser adicionado.
+ * @param graph O grafo onde o nó será inserido.
+ */
 template<typename Node>
 void add_node_from_string(const std::string& str, IGraph<Node>& graph) {
     Node node;
@@ -42,6 +63,13 @@ void add_node_from_string(const std::string& str, IGraph<Node>& graph) {
     graph.add_node(node);
 } 
 
+/**
+ * @brief Remove um nó do grafo a partir de uma representação em string.
+ *
+ * @tparam Node O tipo de dado dos nós do grafo.
+ * @param str A string contendo o valor do nó a ser removido.
+ * @param graph O grafo de onde o nó será removido.
+ */
 template<typename Node>
 void remove_node_from_string(const std::string& str, IGraph<Node>& graph) {
     Node node;
@@ -50,6 +78,13 @@ void remove_node_from_string(const std::string& str, IGraph<Node>& graph) {
     graph.remove_node(node);
 } 
 
+/**
+ * @brief Sobrecarga do operador << para o enum EdgeType para imprimir o tipo de aresta no console.
+ *
+ * @param os O stream de saída.
+ * @param type O valor a ser impresso.
+ * @return Uma referência ao stream de saída, permitindo encadeamento.
+ */
 std::ostream& operator<<(std::ostream& os, EdgeType type) {
     switch (type) {
         case EdgeType::TREE:    
