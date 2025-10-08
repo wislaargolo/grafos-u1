@@ -84,7 +84,7 @@ public:
      * @brief Verifica se um determinado nó existe no grafo.
      *
      * @param node O nó a ser verificado.
-     * @return `true` se o nó existe no grafo, `false` caso contrário.
+     * @return true se o nó existe no grafo, false caso contrário.
      */
     virtual bool has_node(const Node& node) const = 0;
 
@@ -105,9 +105,9 @@ public:
     /**
      * @brief Retorna o nó associado a um índice interno.
      *
-     * Esta é a operação inversa de `get_index`.
+     * Esta é a operação inversa de get_index.
      * @param index O índice inteiro do nó a ser retornado.
-     * @return O objeto `Node` correspondente ao índice. Caso o índice seja inválido, uma exceção std::out_of_range será lançada.
+     * @return O Node correspondente ao índice. Caso o índice seja inválido, uma exceção std::out_of_range será lançada.
      */
     virtual Node get_node(int index) const = 0;
 

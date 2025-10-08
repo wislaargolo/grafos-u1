@@ -12,9 +12,8 @@
 /**
  * @brief Popula um grafo com dados de um arquivo de texto.
  * 
- * @details O formato esperado do arquivo é:
- * 1. Uma primeira linha de cabeçalho, que é ignorada.
- * 2. Linhas subsequentes no formato "u,v", onde 'u' e 'v' são os nós
+ * @details O formato esperado do arquivo é: uma linha de cabeçalho inicial e 
+ * linhas seguintes no formato "u,v", onde 'u' e 'v' são os nós
  * que formam uma aresta.
  *
  * @tparam Node O tipo de dado dos nós do grafo.
@@ -48,6 +47,13 @@ void populate_graph_from_file(const std::string& filename, IGraph<Node>& graph) 
     file.close();
 }
 
+/**
+ * @brief Adiciona um nó ao grafo a partir de uma representação em string.
+ *
+ * @tparam Node O tipo de dado dos nós do grafo.
+ * @param str A string contendo o valor do nó a ser adicionado.
+ * @param graph O grafo onde o nó será inserido.
+ */
 template<typename Node>
 void add_node_from_string(const std::string& str, IGraph<Node>& graph) {
     Node node;
@@ -56,6 +62,13 @@ void add_node_from_string(const std::string& str, IGraph<Node>& graph) {
     graph.add_node(node);
 } 
 
+/**
+ * @brief Remove um nó do grafo a partir de uma representação em string.
+ *
+ * @tparam Node O tipo de dado dos nós do grafo.
+ * @param str A string contendo o valor do nó a ser removido.
+ * @param graph O grafo de onde o nó será removido.
+ */
 template<typename Node>
 void remove_node_from_string(const std::string& str, IGraph<Node>& graph) {
     Node node;
@@ -64,6 +77,13 @@ void remove_node_from_string(const std::string& str, IGraph<Node>& graph) {
     graph.remove_node(node);
 } 
 
+/**
+ * @brief Sobrecarga do operador << para o enum EdgeType para imprimir o tipo de aresta no console.
+ *
+ * @param os O stream de saída.
+ * @param type O valor a ser impresso.
+ * @return Uma referência ao stream de saída, permitindo encadeamento.
+ */
 std::ostream& operator<<(std::ostream& os, EdgeType type) {
     switch (type) {
         case EdgeType::TREE:    
