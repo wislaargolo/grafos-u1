@@ -212,6 +212,11 @@ class DirectedAdjacencyListGraph : public IGraph<Node> {
             size_t node_index = node_to_index.at(node);
             return adjac[node_index].size();
         }
+    
+        bool is_adjacent(const Node& u, const Node& v) const override {
+            const auto& neighbors = adjac[get_index(u)];
+            return std::find(neighbors.begin(), neighbors.end(), get_index(v)) != neighbors.end();
+        }
 };
 
 #endif // DIRECTEDADJACENCYLISTGRAPH_H

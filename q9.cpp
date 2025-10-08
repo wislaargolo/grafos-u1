@@ -8,17 +8,27 @@
 
 int main() {
 
+    //comum
+    std::string newNodeStr = "x";
+
     //Aciona no em Lista de Adjacências
     std::cout << "Creating graph from file 'GRAFO_0.txt' to adjacency list...\n";
-    UndirectedAdjacencyListGraph<char> graph;
-    populate_graph_from_file("data/GRAFO_0.txt", graph);
-    graph.print();
-    std::string newNodeStr = "x";
+    UndirectedAdjacencyListGraph<char> ALGraph;
+    populate_graph_from_file("data/GRAFO_0.txt", ALGraph);
+    ALGraph.print();
+    
     std::cout << "Adding node: " << newNodeStr << std::endl;
-    add_node_from_string(newNodeStr,graph);
-    graph.print();
+    add_node_from_string(newNodeStr,ALGraph);
+    ALGraph.print();
 
-    //TODO: Adiciona no em Matriz de Adjacências
+    //Adiciona no em Matriz de Adjacências
+    std::cout << "Creating graph from file 'GRAFO_0.txt' to adjacency Matrix...\n";
+    UndirectedAdjacencyMatrixGraph<char> AMGraph;
+    populate_graph_from_file("data/GRAFO_0.txt", AMGraph);
+    AMGraph.print();
+    std::cout << "Adding node: " << newNodeStr << std::endl;
+    add_node_from_string(newNodeStr,AMGraph);
+    AMGraph.print();
 
     return 0;
 }

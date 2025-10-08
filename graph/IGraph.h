@@ -139,6 +139,17 @@ public:
      */
     virtual size_t get_out_degree(const Node& node) const = 0;
 
+    /**
+     * @brief Verifica se dois nós são adjacentes.
+     *
+     * Para grafos direcionados: um vértice v é adjacente a um vértice u se houver uma aresta (u, v) que aponta de u para v.
+     * Para grafos não-direcionados: dois vértices são adjacentes se existe uma aresta entre eles.
+     * @param u O nó de origem.
+     * @param v O nó de destino.
+     * @return true se u e v são adjacentes, false caso contrário.
+     */
+    virtual bool is_adjacent(const Node& u, const Node& v) const = 0;
+
 };
 
 #endif // IGRAPH_H

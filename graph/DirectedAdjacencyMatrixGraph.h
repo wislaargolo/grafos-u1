@@ -218,6 +218,11 @@ public:
         }
         return out_degree;
     }
+
+    bool is_adjacent(const Node& u, const Node& v) const override {
+            const auto& neighbors = matrix[get_index(u)];
+            return std::find(neighbors.begin(), neighbors.end(), get_index(v)) != neighbors.end();
+    }
 };
 
 #endif
