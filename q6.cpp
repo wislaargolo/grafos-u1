@@ -56,5 +56,16 @@ int main() {
     test_is_adjacent('a', 'c', UAMgraph);
     test_is_adjacent('b', 'd', UAMgraph);
 
+    //cria digrafo usando matriz de incidencia e printa o grafo
+    std::cout << "Creating graph from file 'DIGRAFO_0.txt' to incidence matrix...\n";
+    DirectedIncidenceMatrixGraph<char> DIMgraph;
+    populate_graph_from_file("data/DIGRAFO_0.txt", DIMgraph);
+    DIMgraph.print();
+
+    //testa o metodo is_adjacent
+    test_is_adjacent('a', 'b', DIMgraph);
+    test_is_adjacent('a', 'c', DIMgraph);
+    test_is_adjacent('b', 'd', DIMgraph);
+
     return 0;
 }

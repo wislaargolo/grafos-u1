@@ -200,6 +200,17 @@ public:
         }
         return out_degree;
     }
+
+    bool is_adjacent(const Node& u, const Node& v) const override {
+        int u_idx = get_index(u);
+        int v_idx = get_index(v);
+        for (const auto& edge_row : matrix) {
+            if (edge_row[u_idx] == -1 && edge_row[v_idx] == 1) {
+                return true;
+            }
+        }
+        return false;
+    }
 };
 
 #endif
