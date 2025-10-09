@@ -33,7 +33,7 @@ void choose_file_and_populate_graph(IGraph<char>& graph, bool is_directed = fals
 
     std::cout << "\n";
 
-    if (op < 0 || op > 3) {
+    if (op < 1 || op > 4) {
         throw new std::invalid_argument("Invalid operation!");
     }
 
