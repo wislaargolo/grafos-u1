@@ -142,7 +142,16 @@ int main() {
         }
 
         else if (opt == 3) {
-            // TODO: adicionar criação de matriz de incidência aqui (faltando métodos na classe)
+            if (graph_ptr != NULL) {
+                delete graph_ptr;
+            }
+
+            graph_ptr = new UndirectedIncidenceMatrixGraph<char>();
+            type = 3;
+            is_directed = false;
+
+            choose_file_and_populate_graph(*graph_ptr);
+            graph_ptr->print();
         }
 
         else if (opt == 4) {
@@ -163,6 +172,8 @@ int main() {
         }
 
         else if (opt == 5) {
+            graph_ptr->print();
+
             std::cout << "Calculando graus dos vertices:\n";
             for (const auto& node : graph_ptr->get_nodes()) {
                 std::cout << "  Vertice " << node << ": "
@@ -183,6 +194,8 @@ int main() {
             std::cout << "Digite o vértice 2: ";
             std::cin >> n2;
 
+            graph_ptr->print();
+
             if (graph_ptr->is_adjacent(n1, n2)) {
                 std::cout << "\nOs vértices são adjacentes.\n\n";
             } else {
@@ -191,10 +204,14 @@ int main() {
         }
 
         else if (opt == 7) {
+            graph_ptr->print();
+
             std::cout << "Ordem do grafo: " << graph_ptr->get_order() << "\n\n";
         }
 
         else if (opt == 8) {
+            graph_ptr->print();
+
             std::cout << "Tamanho do grafo: " << graph_ptr->get_size() << "\n\n";
         }
 
@@ -225,6 +242,8 @@ int main() {
         }
 
         else if (opt == 11) {
+            graph_ptr->print();
+
             if (is_connected(*graph_ptr)) {
                 std::cout << "O grafo é conexo.\n\n";
             } else {
@@ -233,6 +252,8 @@ int main() {
         }
 
         else if (opt == 12) {
+            graph_ptr->print();
+
             if (is_graph_bipartite(*graph_ptr)) {
                 std::cout << "Grafo é bipartido\n\n";
             } else {
@@ -247,7 +268,11 @@ int main() {
 
             std::cout << "Digite o vértice para a busca em largura: ";
             std::cin >> node;
-            std::cout << "\nOrdem dos vértices visitados: ";
+            std::cout << "\n";
+
+            graph_ptr->print();
+
+            std::cout << "Ordem dos vértices visitados: \n";
 
             auto bfs_result = bfs(*graph_ptr, node);
 
@@ -265,7 +290,11 @@ int main() {
 
             std::cout << "Digite o vértice para a busca em profundidade: ";
             std::cin >> node;
-            std::cout << "\nResultado:\n";
+            std::cout << "\n";
+
+            graph_ptr->print();
+
+            std::cout << "Resultado:\n";
 
             auto dfs_result = dfs_unidirectional(*graph_ptr, node);
 
@@ -299,6 +328,8 @@ int main() {
         }
 
         else if (opt == 15) {
+            graph_ptr->print();
+
             auto result = divide_blocks(*graph_ptr);
 
             std::cout << "Articulações:\n";
@@ -333,7 +364,16 @@ int main() {
         }
 
         else if (opt == 17) {
-            //TODO: same as 3
+            if (graph_ptr != NULL) {
+                delete graph_ptr;
+            }
+
+            graph_ptr = new DirectedIncidenceMatrixGraph<char>();
+            type = 3;
+            is_directed = true;
+
+            choose_file_and_populate_graph(*graph_ptr, true);
+            graph_ptr->print();
         }
 
         else if (opt == 18) {
@@ -342,10 +382,14 @@ int main() {
             if (type == 2) {
                 other_graph = new UndirectedAdjacencyMatrixGraph<char>();
             } else {
-                //other_graph = new UndirectedIncidenceMatrixGraph<char>();
+                other_graph = new UndirectedIncidenceMatrixGraph<char>();
             }
 
+            graph_ptr->print();
+
             copy_graph(*graph_ptr, *other_graph);
+
+            std::cout << "Grafo subjacente:\n";
 
             other_graph->print();
 
@@ -353,6 +397,8 @@ int main() {
         }
 
         else if (opt == 19) {
+            graph_ptr->print();
+
             auto bfs_result1 = bfs_digraph(*graph_ptr);
 
             std::cout << "Componentes da BFS no grafo direcionado:\n";
@@ -369,6 +415,8 @@ int main() {
         }
 
         else if (opt == 20) {
+            graph_ptr->print();
+
             auto dfs_result = dfs(*graph_ptr);
 
             for (const auto& [node, time] : dfs_result.discovery) {
