@@ -29,6 +29,7 @@ std::vector<Node> bfs_visit(const IGraph<Node>& graph, int start_index, std::vec
 
     visited[start_index] = 1;
     queue.push(start_index);
+    result.push_back(graph.get_node(start_index));
 
     while (!queue.empty()) {
         size_t current = queue.front();

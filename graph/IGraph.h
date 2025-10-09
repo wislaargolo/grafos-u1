@@ -2,7 +2,7 @@
 #define IGRAPH_H
 
 #include <vector>
-
+#include <cstddef>
 /**
  * @class IGraph
  * @brief Interface genérica para Grafos.
