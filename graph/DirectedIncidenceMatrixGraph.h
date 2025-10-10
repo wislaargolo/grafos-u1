@@ -86,7 +86,7 @@ public:
 
     std::vector<int> get_neighbors_indices(int node_index) const override {
         std::vector<int> neighbors_indices;
-        if (node_index < 0 || node_index >= this->get_order()) return neighbors_indices;
+        if (node_index < 0 || node_index >= static_cast<int>(this->get_order())) return neighbors_indices;
 
         for (const auto& edge_row : matrix) {
             if (edge_row[node_index] == -1) {

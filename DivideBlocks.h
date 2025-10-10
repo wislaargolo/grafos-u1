@@ -144,7 +144,7 @@ DivideBlocksResult<Node> divide_blocks(const IGraph<Node>& graph) {
     state.lowpt.resize(size);
 
     // Percorre todos os vértices e visita aqueles que não foram visitados
-    for (int i = 0; i < size; i++) {
+    for (size_t i = 0; i < size; i++) {
         if (!state.discovery[i]) {
             divide_blocks_visit(graph, state, i);
         }

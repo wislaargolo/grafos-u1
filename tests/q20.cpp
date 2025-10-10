@@ -4,6 +4,16 @@
 #include <iostream>
 #include <string>
 
+std::string dfs_edge_type_to_string(EdgeType type) {
+    switch (type) {
+        case EdgeType::TREE: return "Tree";
+        case EdgeType::BACK: return "Back";
+        case EdgeType::FORWARD: return "Forward";
+        case EdgeType::CROSS: return "Cross";
+        default: return "Unknown";
+    }
+}
+
 int main() {
     std::cout << "Creating graph from file 'DIGRAFO_0.txt'...\n";
     DirectedAdjacencyListGraph<char> graph;
@@ -18,7 +28,7 @@ int main() {
     }
     std::cout << "Edges:\n";
     for (const auto& [type, edges] : dfs_result.edges) {
-        std::cout << "  " << type << " Edges:\n";
+        std::cout << "  " << dfs_edge_type_to_string(type) << " Edges:\n";
         for (const auto& edge : edges) {
             std::cout << "    " << edge.from << " -> " << edge.to << "\n";
         }
@@ -37,7 +47,7 @@ int main() {
     }
     std::cout << "Edges:\n";
     for (const auto& [type, edges] : dfs_result1.edges) {
-        std::cout << "  " << type << " Edges:\n";
+        std::cout << "  " << dfs_edge_type_to_string(type) << " Edges:\n";
         for (const auto& edge : edges) {
             std::cout << "    " << edge.from << " -> " << edge.to << "\n";
         }

@@ -59,7 +59,7 @@ bool is_graph_bipartite(const IGraph<Node>& graph) {
     std::vector<int> discovery(size, -1);
 
     // Percorre todos os vértices e visita os que não foram visitados
-    for (int i = 0; i < size; i++) {
+    for (size_t i = 0; i < size; i++) {
         if (discovery[i] == -1) {
             discovery[i] = 0;
 

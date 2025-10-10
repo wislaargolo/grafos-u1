@@ -82,7 +82,8 @@ void remove_node_from_string(const std::string& str, IGraph<Node>& graph) {
     std::stringstream ss(str);
     ss >> node;
     graph.remove_node(node);
-}
+} 
+
 
 /**
  * @brief Sobrecarga do operador << para o enum EdgeType para imprimir o tipo de aresta no console.
