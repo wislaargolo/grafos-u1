@@ -1,5 +1,5 @@
-#include "CheckBipartite.h"
-#include "GraphIO.h"
+#include "../CheckBipartite.h"
+#include "../GraphIO.h"
 
 #include <iostream>
 #include <string>

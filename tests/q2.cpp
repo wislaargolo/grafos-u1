@@ -1,10 +1,10 @@
-#include "GraphAlgorithms.h"
+#include "../GraphAlgorithms.h"
 
 #include <iostream>
 #include <string>
-#include "GraphIO.h"
-#include "graph/DirectedAdjacencyMatrixGraph.h"
-#include "graph/UndirectedAdjacencyMatrixGraph.h"
+#include "../GraphIO.h"
+#include "../graph/DirectedAdjacencyMatrixGraph.h"
+#include "../graph/UndirectedAdjacencyMatrixGraph.h"
 
 
 int main() {

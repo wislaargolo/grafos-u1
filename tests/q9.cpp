@@ -1,6 +1,6 @@
 
-#include "GraphAlgorithms.h"
-#include "GraphIO.h"
+#include "../GraphAlgorithms.h"
+#include "../GraphIO.h"
 
 #include <iostream>
 #include <string>
@@ -16,7 +16,7 @@ int main() {
     UndirectedAdjacencyListGraph<char> ALGraph;
     populate_graph_from_file("data/GRAFO_0.txt", ALGraph);
     ALGraph.print();
-    
+
     std::cout << "Adding node: " << newNodeStr << std::endl;
     add_node_from_string(newNodeStr,ALGraph);
     ALGraph.print();

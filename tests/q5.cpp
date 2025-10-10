@@ -1,11 +1,11 @@
 #include <iostream>
-#include "GraphIO.h"
-#include "graph/DirectedAdjacencyListGraph.h"
-#include "graph/DirectedAdjacencyMatrixGraph.h"
-#include "graph/DirectedIncidenceMatrixGraph.h"
-#include "graph/UndirectedAdjacencyListGraph.h"
-#include "graph/UndirectedAdjacencyMatrixGraph.h"
-#include "graph/UndirectedIncidenceMatrixGraph.h"
+#include "../GraphIO.h"
+#include "../graph/DirectedAdjacencyListGraph.h"
+#include "../graph/DirectedAdjacencyMatrixGraph.h"
+#include "../graph/DirectedIncidenceMatrixGraph.h"
+#include "../graph/UndirectedAdjacencyListGraph.h"
+#include "../graph/UndirectedAdjacencyMatrixGraph.h"
+#include "../graph/UndirectedIncidenceMatrixGraph.h"
 
 template<typename GraphType>
 void print_degree(const std::string& graph_name, const std::string& filename) {

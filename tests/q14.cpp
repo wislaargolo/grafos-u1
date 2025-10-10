@@ -1,5 +1,5 @@
-#include "Dfs.h"
-#include "GraphIO.h"
+#include "../Dfs.h"
+#include "../GraphIO.h"
 
 #include <iostream>
 #include <string>
@@ -23,7 +23,7 @@ int main() {
     auto dfs_result = dfs_unidirectional(graph, graph.get_nodes().front());
     std::cout << "Result:\n";
     for (const auto& [node, time] : dfs_result.discovery) {
-        std::cout << "Node: " << node << ", Discovery Time: " << time 
+        std::cout << "Node: " << node << ", Discovery Time: " << time
                   << ", Exit Time: " << dfs_result.exit.at(node) << "\n";
     }
     std::cout << "Edges:\n";
@@ -54,7 +54,7 @@ int main() {
     }
 
     std::cout << "Creating graph from file 'GRAFO_2.txt'...\n";
-    UndirectedAdjacencyListGraph<int> graph2;   
+    UndirectedAdjacencyListGraph<int> graph2;
     populate_graph_from_file("data/GRAFO_2.txt", graph2);
     graph2.print();
     auto dfs_result2 = dfs_unidirectional(graph2, graph2.get_nodes().front());
@@ -69,7 +69,7 @@ int main() {
         for (const auto& edge : edges) {
             std::cout << "    " << edge.from << " -> " << edge.to << "\n";
         }
-    }   
+    }
 
     std::cout << "\n";
     std::cout << "Creating graph from file 'GRAFO_3.txt'...\n";

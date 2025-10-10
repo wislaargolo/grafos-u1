@@ -1,5 +1,5 @@
-#include "GraphAlgorithms.h"
-#include "GraphIO.h"
+#include "../GraphAlgorithms.h"
+#include "../GraphIO.h"
 
 #include <iostream>
 #include <string>
@@ -32,7 +32,7 @@ int main() {
     std::cout << "Is connected? " << (is_connected(graph1) ? "Yes" : "No") << "\n";
 
     std::cout << "Creating graph from file 'GRAFO_2.txt'...\n";
-    UndirectedAdjacencyListGraph<int> graph2;  
+    UndirectedAdjacencyListGraph<int> graph2;
     populate_graph_from_file("data/GRAFO_2.txt", graph2);
     graph2.print();
     auto bfs_result1 = bfs(graph2, graph2.get_nodes().front());
@@ -47,13 +47,13 @@ int main() {
     std::cout << "Creating graph from file 'GRAFO_3.txt'...\n";
     UndirectedAdjacencyListGraph<char> graph3;
     populate_graph_from_file("data/GRAFO_3.txt", graph3);
-    graph3.print();     
+    graph3.print();
 
     bfs_result = bfs(graph3, graph3.get_nodes().front());
     std::cout << "BFS starting from '" << graph3.get_nodes().front() << "': ";
     for (const auto& node : bfs_result) {
         std::cout << node << " ";
-    }       
+    }
 
     std::cout << "\n";
 

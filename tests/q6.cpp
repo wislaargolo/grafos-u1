@@ -1,5 +1,5 @@
-#include "GraphAlgorithms.h"
-#include "GraphIO.h"
+#include "../GraphAlgorithms.h"
+#include "../GraphIO.h"
 
 #include <iostream>
 #include <string>
@@ -7,7 +7,7 @@
 
 void test_is_adjacent(char u, char v, const IGraph<char>& graph) {
     std::cout << "Testing is_adjacent method:\n";
-    std::cout << "Is '" << u << "' adjacent to '" << v << "'? " 
+    std::cout << "Is '" << u << "' adjacent to '" << v << "'? "
               << (graph.is_adjacent(u, v) ? "Yes" : "No") << "\n";
 }
 

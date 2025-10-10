@@ -1,5 +1,5 @@
-#include "GraphAlgorithms.h"
-#include "GraphIO.h"
+#include "../GraphAlgorithms.h"
+#include "../GraphIO.h"
 
 
 #include <iostream>

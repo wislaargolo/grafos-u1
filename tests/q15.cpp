@@ -1,5 +1,5 @@
-#include "DivideBlocks.h"
-#include "GraphIO.h"
+#include "../DivideBlocks.h"
+#include "../GraphIO.h"
 
 #include <iostream>
 #include <string>

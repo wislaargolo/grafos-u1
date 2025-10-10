@@ -1,6 +1,5 @@
-
-#include "GraphAlgorithms.h"
-#include "GraphIO.h"
+#include "../GraphAlgorithms.h"
+#include "../GraphIO.h"
 
 #include <iostream>
 #include <string>
@@ -31,6 +30,6 @@ int main() {
     DirectedAdjacencyListGraph<char> digraph0;
     populate_graph_from_file("data/DIGRAFO_0.txt", digraph0);
     digraph0.print();
-    
+
     return 0;
 }

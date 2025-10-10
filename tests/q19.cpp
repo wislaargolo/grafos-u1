@@ -1,5 +1,5 @@
-#include "Bfs.h"
-#include "GraphIO.h"
+#include "../Bfs.h"
+#include "../GraphIO.h"
 
 #include <iostream>
 #include <string>

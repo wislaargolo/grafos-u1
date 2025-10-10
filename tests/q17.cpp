@@ -1,9 +1,9 @@
-#include "GraphAlgorithms.h"
+#include "../GraphAlgorithms.h"
 
 #include <iostream>
 #include <string>
-#include "GraphIO.h"
-#include "graph/DirectedIncidenceMatrixGraph.h"
+#include "../GraphIO.h"
+#include "../graph/DirectedIncidenceMatrixGraph.h"
 
 
 int main() {
