@@ -29,10 +29,7 @@ class UndirectedAdjacencyListGraph : public DirectedAdjacencyListGraph<Node> {
          */
         void add_edge(const Node& u, const Node& v) override {
             DirectedAdjacencyListGraph<Node>::add_edge(u, v);
-            /* Se os nós forem diferentes, adiciona a aresta reversa para evitar duplicação */
-            if (u != v) {
-                DirectedAdjacencyListGraph<Node>::add_edge(v, u);
-            }
+            DirectedAdjacencyListGraph<Node>::add_edge(v, u);
         }
 
          /**
@@ -45,10 +42,7 @@ class UndirectedAdjacencyListGraph : public DirectedAdjacencyListGraph<Node> {
          */
         void remove_edge(const Node& u, const Node& v) override {
             DirectedAdjacencyListGraph<Node>::remove_edge(u, v);
-            /* Se os nós forem diferentes, remove a aresta reversa para evitar duplicação */
-            if (u != v) {
-                DirectedAdjacencyListGraph<Node>::remove_edge(v, u);
-            }
+            DirectedAdjacencyListGraph<Node>::remove_edge(v, u);
         }
 
          /**
