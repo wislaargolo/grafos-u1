@@ -84,33 +84,4 @@ void remove_node_from_string(const std::string& str, IGraph<Node>& graph) {
     graph.remove_node(node);
 } 
 
-
-/**
- * @brief Sobrecarga do operador << para o enum EdgeType para imprimir o tipo de aresta no console.
- *
- * @param os O stream de saída.
- * @param type O valor a ser impresso.
- * @return Uma referência ao stream de saída, permitindo encadeamento.
- */
-std::ostream& operator<<(std::ostream& os, EdgeType type) {
-    switch (type) {
-        case EdgeType::TREE:
-            os << "Tree";
-            break;
-        case EdgeType::BACK:
-            os << "Back";
-            break;
-        case EdgeType::FORWARD:
-            os << "Forward";
-            break;
-        case EdgeType::CROSS:
-            os << "Cross";
-            break;
-        default:
-            os << "Unknown";
-            break;
-    }
-    return os;
-}
-
 #endif // GRAPH_IO_H
