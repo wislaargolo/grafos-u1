@@ -34,9 +34,9 @@ int main() {
         }
     }
 
-    std::cout << "Creating graph from file 'DIGRAFO1.txt'...\n";
+    std::cout << "Creating graph from file 'DIGRAFO_1.txt'...\n";
     DirectedAdjacencyListGraph<int> graph1;    
-    populate_graph_from_file("data/DIGRAFO1.txt", graph1);
+    populate_graph_from_file("data/DIGRAFO_1.txt", graph1);
     graph1.print();
 
     auto dfs_result1 = dfs(graph1);

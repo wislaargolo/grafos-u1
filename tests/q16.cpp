@@ -14,19 +14,19 @@ int main() {
     populate_graph_from_file("data/DIGRAFO_0.txt", graph);
     graph.print();
 
-    std::cout << "Creating graph from file 'DIGRAFO1.txt'...\n";
+    std::cout << "Creating graph from file 'DIGRAFO_1.txt'...\n";
     DirectedAdjacencyMatrixGraph<int> graph1;
-    populate_graph_from_file("data/DIGRAFO1.txt", graph1);
+    populate_graph_from_file("data/DIGRAFO_1.txt", graph1);
     graph1.print();
 
-    std::cout << "Creating graph from file 'DIGRAFO2.txt'...\n";
+    std::cout << "Creating graph from file 'DIGRAFO_2.txt'...\n";
     DirectedAdjacencyMatrixGraph<int> graph2;
-    populate_graph_from_file("data/DIGRAFO2.txt", graph2);
+    populate_graph_from_file("data/DIGRAFO_2.txt", graph2);
     graph2.print();
 
-    std::cout << "Creating graph from file 'DIGRAFO3.txt'...\n";
+    std::cout << "Creating graph from file 'DIGRAFO_3.txt'...\n";
     DirectedAdjacencyMatrixGraph<char> graph3;
-    populate_graph_from_file("data/DIGRAFO3.txt", graph3);
+    populate_graph_from_file("data/DIGRAFO_3.txt", graph3);
     graph3.print();
 
     return 0;
