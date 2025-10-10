@@ -12,8 +12,8 @@
 
 /**
  * @brief Popula um grafo com dados de um arquivo de texto.
- * 
- * @details O formato esperado do arquivo é: uma linha de cabeçalho inicial e 
+ *
+ * @details O formato esperado do arquivo é: uma linha de cabeçalho inicial e
  * linhas seguintes no formato "u,v", onde 'u' e 'v' são os nós
  * que formam uma aresta.
  *
@@ -31,20 +31,26 @@ void populate_graph_from_file(const std::string& filename, IGraph<Node>& graph) 
 
     std::string line;
     /*Ignora a primeira linha de cabeçalho*/
-    std::getline(file, line); 
+    std::getline(file, line);
 
     while (std::getline(file, line)) {
         if (line.empty()) continue;
-        
+
         std::stringstream ss(line);
-        Node u, v; 
-        char comma;
-        
-        /*Lê os nós u e v separados por vírgula*/
-        if (ss >> u >> comma >> v) {
+        std::string part1, part2;
+
+        if (std::getline(ss, part1, ',') && std::getline(ss, part2)) {
+            std::stringstream s1(part1);
+            std::stringstream s2(part2);
+
+            Node u, v;
+            s1 >> u;
+            s2 >> v;
+
             graph.add_edge(u, v);
         }
     }
+
     file.close();
 }
 
@@ -61,7 +67,7 @@ void add_node_from_string(const std::string& str, IGraph<Node>& graph) {
     std::stringstream ss(str);
     ss >> node;
     graph.add_node(node);
-} 
+}
 
 /**
  * @brief Remove um nó do grafo a partir de uma representação em string.
@@ -76,7 +82,7 @@ void remove_node_from_string(const std::string& str, IGraph<Node>& graph) {
     std::stringstream ss(str);
     ss >> node;
     graph.remove_node(node);
-} 
+}
 
 /**
  * @brief Sobrecarga do operador << para o enum EdgeType para imprimir o tipo de aresta no console.
@@ -87,20 +93,20 @@ void remove_node_from_string(const std::string& str, IGraph<Node>& graph) {
  */
 std::ostream& operator<<(std::ostream& os, EdgeType type) {
     switch (type) {
-        case EdgeType::TREE:    
-            os << "Tree";    
+        case EdgeType::TREE:
+            os << "Tree";
             break;
-        case EdgeType::BACK:    
-            os << "Back";    
+        case EdgeType::BACK:
+            os << "Back";
             break;
-        case EdgeType::FORWARD: 
-            os << "Forward"; 
+        case EdgeType::FORWARD:
+            os << "Forward";
             break;
-        case EdgeType::CROSS:   
-            os << "Cross";   
+        case EdgeType::CROSS:
+            os << "Cross";
             break;
-        default:                
-            os << "Unknown"; 
+        default:
+            os << "Unknown";
             break;
     }
     return os;

@@ -18,7 +18,7 @@ bool instance_of(Base* ptr) {
     return dynamic_cast<Derived*>(ptr) != nullptr;
 }
 
-void choose_file_and_populate_graph(IGraph<char>& graph, bool is_directed = false) {
+void choose_file_and_populate_graph(IGraph<std::string>& graph, bool is_directed = false) {
     std::cout << "Selecione um dos arquivos abaixo para construir o grafo:\n";
 
     for (int i = 0; i <= 3; i++) {
@@ -40,10 +40,10 @@ void choose_file_and_populate_graph(IGraph<char>& graph, bool is_directed = fals
     populate_graph_from_file((is_directed ? "data/DIGRAFO_" : "data/GRAFO_") + std::to_string(op - 1) + ".txt", graph);
 }
 
-void print_nodes(IGraph<char>& graph) {
+void print_nodes(IGraph<std::string>& graph) {
     std::cout << "Vértices: ";
 
-    for (char node : graph.get_nodes()) {
+    for (auto& node : graph.get_nodes()) {
         std::cout << node << " ";
     }
 
@@ -57,7 +57,7 @@ struct Option {
 
 int main() {
 
-    IGraph<char>* graph_ptr = NULL;
+    IGraph<std::string>* graph_ptr = NULL;
     bool is_directed;
     int type;
 
@@ -121,7 +121,7 @@ int main() {
                 delete graph_ptr;
             }
 
-            graph_ptr = new UndirectedAdjacencyListGraph<char>();
+            graph_ptr = new UndirectedAdjacencyListGraph<std::string>();
             type = 1;
             is_directed = false;
             choose_file_and_populate_graph(*graph_ptr);
@@ -133,7 +133,7 @@ int main() {
                 delete graph_ptr;
             }
 
-            graph_ptr = new UndirectedAdjacencyMatrixGraph<char>();
+            graph_ptr = new UndirectedAdjacencyMatrixGraph<std::string>();
             type = 2;
             is_directed = false;
 
@@ -146,7 +146,7 @@ int main() {
                 delete graph_ptr;
             }
 
-            graph_ptr = new UndirectedIncidenceMatrixGraph<char>();
+            graph_ptr = new UndirectedIncidenceMatrixGraph<std::string>();
             type = 3;
             is_directed = false;
 
@@ -155,13 +155,13 @@ int main() {
         }
 
         else if (opt == 4) {
-            IGraph<char>* new_graph;
+            IGraph<std::string>* new_graph;
 
             if (type == 1) {
-                new_graph = new UndirectedAdjacencyMatrixGraph<char>();
+                new_graph = new UndirectedAdjacencyMatrixGraph<std::string>();
                 type = 2;
             } else {
-                new_graph = new UndirectedAdjacencyListGraph<char>();
+                new_graph = new UndirectedAdjacencyListGraph<std::string>();
                 type = 1;
             }
 
@@ -187,7 +187,7 @@ int main() {
         else if (opt == 6) {
             print_nodes(*graph_ptr);
 
-            char n1, n2;
+            std::string n1, n2;
 
             std::cout << "Digite o vértice 1: ";
             std::cin >> n1;
@@ -218,7 +218,7 @@ int main() {
         else if (opt == 9) {
             print_nodes(*graph_ptr);
 
-            char node;
+            std::string node;
 
             std::cout << "Digite um novo vértice: ";
             std::cin >> node;
@@ -231,7 +231,7 @@ int main() {
         else if (opt == 10) {
             print_nodes(*graph_ptr);
 
-            char node;
+            std::string node;
 
             std::cout << "Digite o vértice para excluir: ";
             std::cin >> node;
@@ -264,7 +264,7 @@ int main() {
         else if (opt == 13) {
             print_nodes(*graph_ptr);
 
-            char node;
+            std::string node;
 
             std::cout << "Digite o vértice para a busca em largura: ";
             std::cin >> node;
@@ -286,7 +286,7 @@ int main() {
         else if (opt == 14) {
             print_nodes(*graph_ptr);
 
-            char node;
+            std::string node;
 
             std::cout << "Digite o vértice para a busca em profundidade: ";
             std::cin >> node;
@@ -334,13 +334,13 @@ int main() {
 
             std::cout << "Articulações:\n";
 
-            for (char node : result.articulations) {
+            for (auto& node : result.articulations) {
                 std::cout << node << "\n";
             }
 
             std::cout << "\nBlocos:\n";
             for (const auto& block : result.blocks) {
-                for (char node : block) {
+                for (auto& node : block) {
                     std::cout << node << " ";
                 }
 
@@ -355,7 +355,7 @@ int main() {
                 delete graph_ptr;
             }
 
-            graph_ptr = new DirectedAdjacencyMatrixGraph<char>();
+            graph_ptr = new DirectedAdjacencyMatrixGraph<std::string>();
             type = 2;
             is_directed = true;
 
@@ -368,7 +368,7 @@ int main() {
                 delete graph_ptr;
             }
 
-            graph_ptr = new DirectedIncidenceMatrixGraph<char>();
+            graph_ptr = new DirectedIncidenceMatrixGraph<std::string>();
             type = 3;
             is_directed = true;
 
@@ -377,12 +377,12 @@ int main() {
         }
 
         else if (opt == 18) {
-            IGraph<char>* other_graph;
+            IGraph<std::string>* other_graph;
 
             if (type == 2) {
-                other_graph = new UndirectedAdjacencyMatrixGraph<char>();
+                other_graph = new UndirectedAdjacencyMatrixGraph<std::string>();
             } else {
-                other_graph = new UndirectedIncidenceMatrixGraph<char>();
+                other_graph = new UndirectedIncidenceMatrixGraph<std::string>();
             }
 
             graph_ptr->print();
